@@ -1,4 +1,4 @@
-package com.hbpractice.OneToManyMapping.dao;
+package com.hbpractice.OneToManyMappingUni.dao;
 
 import java.util.List;
 
@@ -11,9 +11,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.hbpractice.OneToManyMapping.entity.BookReferred;
-import com.hbpractice.OneToManyMapping.entity.Coder;
-import com.hbpractice.OneToManyMapping.entity.CoderDetail;
+import com.hbpractice.OneToManyMappingUni.entity.BookReferred;
+import com.hbpractice.OneToManyMappingUni.entity.BookReview;
+import com.hbpractice.OneToManyMappingUni.entity.Coder;
+import com.hbpractice.OneToManyMappingUni.entity.CoderDetail;
 
 @Repository
 public class CoderDAOImpl implements CoderDAO {
@@ -172,6 +173,120 @@ public class CoderDAOImpl implements CoderDAO {
 			return null;
 		}
 		return book.getCoder();
+	}
+
+	@Override
+	public boolean updateCoder(Coder coder) {
+		
+		Session currentSession = entityManager.unwrap(Session.class);
+		
+		if(findCoderById(coder.getId()) == null) {
+		
+		return false;
+		
+		}
+		
+		Query theQuery = currentSession.createQuery("update Coder c set c.firstName =:theFname"
+																	+",c.lastName =:theLname"
+																	+",c.age =:theAge"
+																	+",c.email =:theEmail" 
+																	+" where c.id =:theCoderId");
+		theQuery.setParameter("theCoderId", coder.getId());
+		theQuery.setParameter("theFname", coder.getFirstName());
+		theQuery.setParameter("theLname", coder.getLastName());
+		theQuery.setParameter("theAge", coder.getAge());
+		theQuery.setParameter("theEmail", coder.getEmail());
+		
+		theQuery.executeUpdate();
+		
+		return true;
+	}
+
+	@Override
+	public Coder findCoderForCoderDetailById(int coderDetailId) {
+		
+		Session currentSession = entityManager.unwrap(Session.class);
+		
+		CoderDetail coderDetail = currentSession.get(CoderDetail.class, coderDetailId);
+		
+		Coder coder = null;
+		
+		if(coderDetail != null) {
+		
+		coder = coderDetail.getCoder();
+		
+		}
+		
+		return coder;
+	}
+
+	@Override
+	public CoderDetail fetchCoderDetailForCoder(int coderId) {
+		
+		Session currentSession = entityManager.unwrap(Session.class);
+		
+		Coder coder = currentSession.get(Coder.class, coderId);
+		
+		CoderDetail coderDetail = null;
+		
+		if(coder != null) {
+			
+			coderDetail = coder.getCoderDetail();
+			
+		} 
+	
+		return coderDetail;
+	}
+
+	@Override
+	public boolean deleteCoderDetailById(int coderDetailId) {
+		
+		Session currentSession = entityManager.unwrap(Session.class);
+		
+		CoderDetail coderDetail = currentSession.get(CoderDetail.class, coderDetailId);
+		
+		if(coderDetail == null) {
+			
+			return false;
+		}
+		
+		coderDetail.getCoder().setCoderDetail(null); // this is required to remove backward association from coderDetail to coder
+		
+		currentSession.delete(coderDetail);
+		
+		return true;
+	}
+
+	@Override
+	public BookReferred findBookById(int bookId) {
+		
+		Session currentSession = entityManager.unwrap(Session.class);
+		
+		BookReferred bookReferred = currentSession.get(BookReferred.class, bookId);
+		
+		return bookReferred;
+		
+		
+	}
+
+	@Override
+	public boolean addBookReview(BookReview bookReview, int bookId) {
+		
+		BookReferred bookReferred = findBookById(bookId);
+		
+		if(bookReferred == null) {
+			
+			return false;
+		}
+		
+		bookReferred.addBookReview(bookReview);
+		
+		Session updateBookSession = entityManager.unwrap(Session.class);
+		
+		updateBookSession.saveOrUpdate(bookReferred);
+		
+		return true;
+		
 	}
 
 }

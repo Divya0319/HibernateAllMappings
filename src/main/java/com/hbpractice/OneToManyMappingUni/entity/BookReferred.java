@@ -1,15 +1,17 @@
-package com.hbpractice.OneToManyMapping.entity;
+package com.hbpractice.OneToManyMappingUni.entity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -26,6 +28,10 @@ public class BookReferred {
 	@ManyToOne(cascade= {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
 	@JoinColumn(name="coder_id")
 	private Coder coder;
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="book_id")
+	private List<BookReview> bookReviews;
 	
 	public BookReferred() {
 		
@@ -57,6 +63,27 @@ public class BookReferred {
 
 	public void setCoder(Coder coder) {
 		this.coder = coder;
+	}
+	
+	
+
+	public List<BookReview> getBookReviews() {
+		return bookReviews;
+	}
+
+	public void setBookReviews(List<BookReview> bookReviews) {
+		this.bookReviews = bookReviews;
+	}
+	
+	public void addBookReview(BookReview tempReview) {
+		
+		if(bookReviews == null) {
+			
+			bookReviews = new ArrayList<BookReview>();
+		}
+		
+		bookReviews.add(tempReview);
+		
 	}
 
 	@Override

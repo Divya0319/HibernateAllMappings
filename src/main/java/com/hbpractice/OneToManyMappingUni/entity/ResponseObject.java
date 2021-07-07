@@ -1,4 +1,4 @@
-package com.hbpractice.OneToManyMapping.entity;
+package com.hbpractice.OneToManyMappingUni.entity;
 
 public class ResponseObject {
 	

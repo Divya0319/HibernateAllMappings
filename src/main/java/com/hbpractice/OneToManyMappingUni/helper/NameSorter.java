@@ -1,8 +1,8 @@
-package com.hbpractice.OneToManyMapping.helper;
+package com.hbpractice.OneToManyMappingUni.helper;
 
 import java.util.Comparator;
 
-import com.hbpractice.OneToManyMapping.entity.BookReferred;
+import com.hbpractice.OneToManyMappingUni.entity.BookReferred;
 
 public class NameSorter implements Comparator<BookReferred> {
 

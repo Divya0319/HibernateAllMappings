@@ -1,4 +1,4 @@
-package com.hbpractice.OneToManyMapping.aspect;
+package com.hbpractice.OneToManyMappingUni.aspect;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -9,9 +9,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import com.hbpractice.OneToManyMapping.entity.BookReferred;
-import com.hbpractice.OneToManyMapping.entity.Coder;
-import com.hbpractice.OneToManyMapping.entity.CoderDetail;
+import com.hbpractice.OneToManyMappingUni.entity.BookReferred;
+import com.hbpractice.OneToManyMappingUni.entity.BookReview;
+import com.hbpractice.OneToManyMappingUni.entity.Coder;
+import com.hbpractice.OneToManyMappingUni.entity.CoderDetail;
 
 @Aspect
 @Component
@@ -19,7 +20,7 @@ public class LoggingAspect {
 	
 	Logger theLogger = LoggerFactory.getLogger(this.getClass());
 	
-	@Pointcut("execution(* com.hbpractice.OneToManyMapping.rest.CoderRestController.*(..))")
+	@Pointcut("execution(* com.hbpractice.OneToManyMappingUni.rest.CoderRestController.*(..))")
 	private void forControllerPackage() {}
 	
 	@AfterReturning(pointcut="forControllerPackage()", returning="result")
@@ -39,7 +40,7 @@ public class LoggingAspect {
 				
 				bRef.setCoder(null);
 				
-				theLogger.info("---->>> "+ bRef.toString());
+				theLogger.info("---->>> Request\n "+ bRef);
 				
 			} else if(tempArg instanceof Coder) {
 				
@@ -48,7 +49,7 @@ public class LoggingAspect {
 				tCoder.setBooksReferred(null);
 				tCoder.setCoderDetail(null);
 				
-				theLogger.info("---->>> "+ tCoder.toString());
+				theLogger.info("---->>> Request\n "+ tCoder);
 				
 			} else if(tempArg instanceof CoderDetail) {
 				
@@ -56,11 +57,11 @@ public class LoggingAspect {
 				
 				cDet.setCoder(null);
 				
-				theLogger.info("---->>> "+ cDet.toString());
-			}
-			
-			else {
-				theLogger.info("---->>> "+ tempArg.toString());
+				theLogger.info("---->>> Request\n "+ cDet);
+				
+			}	else {
+				
+				theLogger.info("---->>> Request\n"+ tempArg);
 			}
 
 		}

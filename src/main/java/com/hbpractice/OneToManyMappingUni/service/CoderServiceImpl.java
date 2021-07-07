@@ -1,4 +1,4 @@
-package com.hbpractice.OneToManyMapping.service;
+package com.hbpractice.OneToManyMappingUni.service;
 
 import java.util.List;
 
@@ -6,10 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hbpractice.OneToManyMapping.dao.CoderDAO;
-import com.hbpractice.OneToManyMapping.entity.BookReferred;
-import com.hbpractice.OneToManyMapping.entity.Coder;
-import com.hbpractice.OneToManyMapping.entity.CoderDetail;
+import com.hbpractice.OneToManyMappingUni.dao.CoderDAO;
+import com.hbpractice.OneToManyMappingUni.entity.BookReferred;
+import com.hbpractice.OneToManyMappingUni.entity.BookReview;
+import com.hbpractice.OneToManyMappingUni.entity.Coder;
+import com.hbpractice.OneToManyMappingUni.entity.CoderDetail;
 
 @Service
 public class CoderServiceImpl implements CoderService {
@@ -80,6 +81,42 @@ public class CoderServiceImpl implements CoderService {
 	@Transactional
 	public Coder findCoderOfBookById(int bookId) {
 		return coderDao.findCoderOfBookById(bookId);
+	}
+
+	@Override
+	@Transactional
+	public boolean deleteCoderDetailById(int coderDetailId) {
+		return coderDao.deleteCoderDetailById(coderDetailId);
+	}
+
+	@Override
+	@Transactional
+	public boolean updateCoder(Coder coder) {
+		return coderDao.updateCoder(coder);
+	}
+
+	@Override
+	@Transactional
+	public Coder findCoderForCoderDetailById(int coderDetailId) {
+		return coderDao.findCoderForCoderDetailById(coderDetailId);
+	}
+
+	@Override
+	@Transactional
+	public CoderDetail fetchCoderDetailForCoder(int coderId) {
+		return coderDao.fetchCoderDetailForCoder(coderId);
+	}
+
+	@Override
+	@Transactional
+	public BookReferred findBookById(int bookId) {
+		return coderDao.findBookById(bookId);
+	}
+
+	@Override
+	@Transactional
+	public boolean addBookReview(BookReview bookReview, int bookId) {
+		return coderDao.addBookReview(bookReview, bookId);
 	}
 
 }
