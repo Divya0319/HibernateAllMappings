@@ -259,6 +259,34 @@ private CoderService coderService;
 		
 	}
 	
+	@GetMapping("/booksReferred/{bookId}/bookReviews")
+	public List<?> fetchAllReviewsForABook(@PathVariable int bookId, 
+			HttpServletResponse response) {
+		
+		ResponseObject resp = new ResponseObject();
+		
+		List<BookReview> bookReviews = coderService.findReviewsForBook(bookId);
+		
+		
+		if(bookReviews.size() == 0) {
+			
+			List<ResponseObject> resObj = new ArrayList<>();
+			
+			response.setStatus(HttpStatus.NOT_FOUND.value());
+			
+			resp.setMessage("Book not found with id : " + bookId );
+			
+			resObj.add(resp);
+			
+			return resObj;
+			
+		}
+		
+		response.setStatus(HttpStatus.OK.value());
+	
+		return bookReviews;
+	}
+	
 
 	@PostMapping("/coders")
 	public Coder addCoder(@RequestBody Coder coder) {

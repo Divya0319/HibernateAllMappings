@@ -119,4 +119,10 @@ public class CoderServiceImpl implements CoderService {
 		return coderDao.addBookReview(bookReview, bookId);
 	}
 
+	@Override
+	@Transactional
+	public List<BookReview> findReviewsForBook(int bookId) {
+		return coderDao.findReviewsForBook(bookId);
+	}
+
 }

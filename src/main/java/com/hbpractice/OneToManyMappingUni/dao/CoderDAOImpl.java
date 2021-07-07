@@ -1,5 +1,6 @@
 package com.hbpractice.OneToManyMappingUni.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -287,6 +288,20 @@ public class CoderDAOImpl implements CoderDAO {
 		
 		return true;
 		
+	}
+
+	@Override
+	public List<BookReview> findReviewsForBook(int bookId) {
+		
+		BookReferred bookReferred = findBookById(bookId);
+		
+		if(bookReferred == null) {
+			
+			return new ArrayList<BookReview>();
+		}
+		
+		return bookReferred.getBookReviews();
+						
 	}
 
 }

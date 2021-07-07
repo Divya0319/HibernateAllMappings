@@ -41,4 +41,6 @@ public interface CoderDAO {
 
 	public boolean addBookReview(BookReview bookReview, int bookId);
 
+	public List<BookReview> findReviewsForBook(int bookId);
+
 }

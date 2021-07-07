@@ -41,5 +41,7 @@ public interface CoderService {
 
 	public boolean addBookReview(BookReview bookReview, int bookId);
 
+	public List<BookReview> findReviewsForBook(int bookId);
+
 
 }
