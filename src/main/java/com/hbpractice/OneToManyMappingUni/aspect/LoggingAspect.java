@@ -1,5 +1,8 @@
 package com.hbpractice.OneToManyMappingUni.aspect;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
@@ -26,7 +29,13 @@ public class LoggingAspect {
 	@AfterReturning(pointcut="forControllerPackage()", returning="result")
 	public void afterReturningMethod(JoinPoint theJoinPoint, Object result) {
 		
+		Calendar calendar = new GregorianCalendar();
+		
+		String currentTime = calendar.getTime().toString();
+		
 		MethodSignature methodSig = (MethodSignature)theJoinPoint.getSignature();
+		
+		theLogger.info("----->>>>> TimeStamp -> " + currentTime);
 		
 		theLogger.info("----->>>>> Calling method -> " + methodSig.toString());
 		
