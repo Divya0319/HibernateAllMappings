@@ -1,4 +1,4 @@
-package com.hbpractice.OneToManyMappingUni.entity;
+package com.hbpractice.ManyToManyMapping.entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -121,7 +121,7 @@ public class Coder {
 	@Override
 	public String toString() {
 		return "\nCoder [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", age=" + age
-				+ ", email=" + email + ", coderDetail=" + coderDetail + ", booksReferred=" + booksReferred + "]\n";
+				+ ", email=" + email + "]\n";
 	}
 
 }
