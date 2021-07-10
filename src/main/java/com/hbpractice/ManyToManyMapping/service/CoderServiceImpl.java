@@ -1,4 +1,4 @@
-package com.hbpractice.OneToManyMappingUni.service;
+package com.hbpractice.ManyToManyMapping.service;
 
 import java.util.List;
 
@@ -6,11 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hbpractice.OneToManyMappingUni.dao.CoderDAO;
-import com.hbpractice.OneToManyMappingUni.entity.BookReferred;
-import com.hbpractice.OneToManyMappingUni.entity.BookReview;
-import com.hbpractice.OneToManyMappingUni.entity.Coder;
-import com.hbpractice.OneToManyMappingUni.entity.CoderDetail;
+import com.hbpractice.ManyToManyMapping.dao.CoderDAO;
+import com.hbpractice.ManyToManyMapping.entity.BookReferred;
+import com.hbpractice.ManyToManyMapping.entity.BookReview;
+import com.hbpractice.ManyToManyMapping.entity.Coder;
+import com.hbpractice.ManyToManyMapping.entity.CoderDetail;
+import com.hbpractice.ManyToManyMapping.entity.Designer;
 
 @Service
 public class CoderServiceImpl implements CoderService {
@@ -123,6 +124,37 @@ public class CoderServiceImpl implements CoderService {
 	@Transactional
 	public List<BookReview> findReviewsForBook(int bookId) {
 		return coderDao.findReviewsForBook(bookId);
+	}
+
+	@Override
+	@Transactional
+	public void addDesigner(Designer designer) {
+		coderDao.addDesigner(designer);
+		
+	}
+
+	@Override
+	@Transactional
+	public boolean addBookToDesigner(BookReferred bookReferred, int designerId) {
+		return coderDao.addBookToDesigner(bookReferred, designerId);
+	}
+
+	@Override
+	@Transactional
+	public List<BookReferred> findAllBooksForDesigner(int dId) {
+		return coderDao.findAllBooksForDesigner(dId);
+	}
+	
+	@Override
+	@Transactional
+	public List<Designer> findAllDesignersForBook(int bId) {
+		return coderDao.findAllDesignersForBook(bId);
+	}
+
+	@Override
+	@Transactional
+	public boolean deleteDesignerById(int dId) {
+		return coderDao.deleteDesignerById(dId);
 	}
 
 }
