@@ -1,4 +1,4 @@
-package com.hbpractice.OneToManyMappingUni.dao;
+package com.hbpractice.ManyToManyMapping.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,10 +12,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.hbpractice.OneToManyMappingUni.entity.BookReferred;
-import com.hbpractice.OneToManyMappingUni.entity.BookReview;
-import com.hbpractice.OneToManyMappingUni.entity.Coder;
-import com.hbpractice.OneToManyMappingUni.entity.CoderDetail;
+import com.hbpractice.ManyToManyMapping.entity.BookReferred;
+import com.hbpractice.ManyToManyMapping.entity.BookReview;
+import com.hbpractice.ManyToManyMapping.entity.Coder;
+import com.hbpractice.ManyToManyMapping.entity.CoderDetail;
+import com.hbpractice.ManyToManyMapping.entity.Designer;
 
 @Repository
 public class CoderDAOImpl implements CoderDAO {
@@ -303,5 +304,92 @@ public class CoderDAOImpl implements CoderDAO {
 		return bookReferred.getBookReviews();
 						
 	}
+
+	@Override
+	public void addDesigner(Designer designer) {
+		
+		Session currentSession = entityManager.unwrap(Session.class);
+		
+		currentSession.save(designer);
+		
+	}
+	
+	@Override
+	public Designer findDesignerById(int designerId) {
+		
+		Session currentSession = entityManager.unwrap(Session.class);
+		
+		Designer designer = currentSession.get(Designer.class, designerId);
+		
+		return designer;
+		
+		
+	}
+
+	@Override
+	public boolean addBookToDesigner(BookReferred bookReferred, int designerId) {
+		
+		Session currentSession = entityManager.unwrap(Session.class);
+		
+		Designer designer = currentSession.get(Designer.class, designerId);
+		
+		if(designer == null) {
+			
+			return false;
+		}
+		
+		designer.addBook(bookReferred);
+		
+		currentSession.save(bookReferred);
+		
+		return true;
+	}
+
+	@Override
+	public List<BookReferred> findAllBooksForDesigner(int dId) {
+		
+		Session currentSession = entityManager.unwrap(Session.class);
+		
+		Designer tempDesigner = currentSession.get(Designer.class, dId);
+		
+		if(tempDesigner == null) {
+			
+			return new ArrayList<>();
+		}
+				
+		return tempDesigner.getBooksReferred();
+	}
+	
+	@Override
+	public List<Designer> findAllDesignersForBook(int bId) {
+		
+		Session currentSession = entityManager.unwrap(Session.class);
+		
+		BookReferred tempBook = currentSession.get(BookReferred.class, bId);
+		
+		if(tempBook == null) {
+			
+			return new ArrayList<>();
+		}
+				
+		return tempBook.getDesigners();
+	}
+
+	@Override
+	public boolean deleteDesignerById(int dId) {
+		Session currentSession = entityManager.unwrap(Session.class);
+		
+		Designer designer = currentSession.get(Designer.class, dId);
+		
+		if(designer == null) {
+			
+			return false;
+		}		
+			
+		currentSession.delete(designer);
+		
+		return true;
+	}
+	
 
 }
