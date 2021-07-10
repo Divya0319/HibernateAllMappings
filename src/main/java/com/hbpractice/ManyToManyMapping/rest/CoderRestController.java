@@ -504,7 +504,7 @@ private CoderService coderService;
 		return resObj;
 	}
 	
-	@PatchMapping("/coders")
+	@PutMapping("/coders")
 	public ResponseObject updateCoder(@RequestBody Coder coder, HttpServletResponse response) {
 		
 		boolean coderFound = coderService.updateCoder(coder);
