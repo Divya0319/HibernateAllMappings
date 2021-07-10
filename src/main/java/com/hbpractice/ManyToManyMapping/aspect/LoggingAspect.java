@@ -1,4 +1,4 @@
-package com.hbpractice.OneToManyMappingUni.aspect;
+package com.hbpractice.ManyToManyMapping.aspect;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -12,10 +12,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import com.hbpractice.OneToManyMappingUni.entity.BookReferred;
-import com.hbpractice.OneToManyMappingUni.entity.BookReview;
-import com.hbpractice.OneToManyMappingUni.entity.Coder;
-import com.hbpractice.OneToManyMappingUni.entity.CoderDetail;
+import com.hbpractice.ManyToManyMapping.entity.BookReferred;
+import com.hbpractice.ManyToManyMapping.entity.BookReview;
+import com.hbpractice.ManyToManyMapping.entity.Coder;
+import com.hbpractice.ManyToManyMapping.entity.CoderDetail;
 
 @Aspect
 @Component
@@ -23,7 +23,7 @@ public class LoggingAspect {
 	
 	Logger theLogger = LoggerFactory.getLogger(this.getClass());
 	
-	@Pointcut("execution(* com.hbpractice.OneToManyMappingUni.rest.CoderRestController.*(..))")
+	@Pointcut("execution(* com.hbpractice.ManyToManyMapping.rest.CoderRestController.*(..))")
 	private void forControllerPackage() {}
 	
 	@AfterReturning(pointcut="forControllerPackage()", returning="result")
