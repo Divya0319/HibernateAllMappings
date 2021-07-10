@@ -1,11 +1,12 @@
-package com.hbpractice.OneToManyMappingUni.service;
+package com.hbpractice.ManyToManyMapping.service;
 
 import java.util.List;
 
-import com.hbpractice.OneToManyMappingUni.entity.BookReferred;
-import com.hbpractice.OneToManyMappingUni.entity.BookReview;
-import com.hbpractice.OneToManyMappingUni.entity.Coder;
-import com.hbpractice.OneToManyMappingUni.entity.CoderDetail;
+import com.hbpractice.ManyToManyMapping.entity.BookReferred;
+import com.hbpractice.ManyToManyMapping.entity.BookReview;
+import com.hbpractice.ManyToManyMapping.entity.Coder;
+import com.hbpractice.ManyToManyMapping.entity.CoderDetail;
+import com.hbpractice.ManyToManyMapping.entity.Designer;
 
 public interface CoderService {
 	
@@ -42,6 +43,16 @@ public interface CoderService {
 	public boolean addBookReview(BookReview bookReview, int bookId);
 
 	public List<BookReview> findReviewsForBook(int bookId);
+
+	public void addDesigner(Designer designer);
+
+	public boolean addBookToDesigner(BookReferred bookReferred, int designerId);
+
+	public List<BookReferred> findAllBooksForDesigner(int dId);
+
+	public List<Designer> findAllDesignersForBook(int bId);
+
+	public boolean deleteDesignerById(int dId);
 
 
 }
