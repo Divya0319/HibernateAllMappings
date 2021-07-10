@@ -1,4 +1,4 @@
-package com.hbpractice.OneToManyMappingUni.entity;
+package com.hbpractice.ManyToManyMapping.entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -32,6 +34,14 @@ public class BookReferred {
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="book_id")
 	private List<BookReview> bookReviews;
+	
+	
+	@ManyToMany(cascade= {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	@JoinTable(name="bookreferred_designer",
+				joinColumns=@JoinColumn(name="book_id"),
+				inverseJoinColumns=@JoinColumn(name="designer_id")
+	)
+	private List<Designer> designers;
 	
 	public BookReferred() {
 		
@@ -85,10 +95,21 @@ public class BookReferred {
 		bookReviews.add(tempReview);
 		
 	}
+	
+	
+
+	public List<Designer> getDesigners() {
+		return designers;
+	}
+
+	public void setDesigners(List<Designer> designers) {
+		this.designers = designers;
+	}
+	
 
 	@Override
 	public String toString() {
-		return "BooksReferred \n[\nid=" + id + ", title=" + title + ", coder=" + coder + "\n]\n";
+		return "BooksReferred \n[\nid=" + id + ", title=" + title +  "\n]";
 	}
 	
 	
