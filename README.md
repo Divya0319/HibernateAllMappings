@@ -1,6 +1,6 @@
-# REST API with ManyToMany mapping using Spring Boot
-A Spring Boot application involving ManyToMany mapping,  between a Designer entity which can refer to many books, and a Book entity which can be referred by many designers.
-The application exposes various endpoints to demonstrate the working of this @ManyToMany relationship.
+# REST API with all hibernate mappings using Spring REST
+A Spring Boot application involving OneToOne, OneToMany, ManyToOne and ManyToMany mappings.
+The application exposes various endpoints to demonstrate the working of these mapping relationships
 
 ### Following are the mappings available in this REST API.
 
