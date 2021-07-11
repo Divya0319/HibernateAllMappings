@@ -1,4 +1,7 @@
 # REST API with all hibernate mappings using Spring REST
+
+For a quick demo of the API, follow [this](http://hibernate-mappings.ap-south-1.elasticbeanstalk.com/) link.  
+
 A Spring Boot application involving OneToOne, OneToMany, ManyToOne and ManyToMany mappings.
 * #### OneToOne - from coders to coderDetail and vice versa.  
 * #### OneToMany - from coders to booksReferred.
@@ -82,5 +85,3 @@ The application exposes various endpoints to demonstrate the working of these ma
 20. **DELETE /booksReferred/{bookId}** to delete a book by id.
 21. **DELETE /coderDetail/{coderDetailId}** to delete a coderDetail by id.
 22. **DELETE /designers/{dId}** to delete a designer by id.
-
-For a quick demo of the API, follow [this](http://hibernate-mappings.ap-south-1.elasticbeanstalk.com/) link.
