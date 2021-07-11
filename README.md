@@ -1,5 +1,10 @@
 # REST API with all hibernate mappings using Spring REST
 A Spring Boot application involving OneToOne, OneToMany, ManyToOne and ManyToMany mappings.
+* #### OneToOne - from coders to coderDetail and vice versa.  
+* #### OneToMany - from coders to booksReferred.
+* #### OneToMany unidirectional - from booksReferred to bookReviews.
+* #### ManyToOne  - from booksReferred to coders.
+* #### ManyToMany  - from booksReferred to designers and vice versa.
 The application exposes various endpoints to demonstrate the working of these mapping relationships
 
 ### Following are the mappings available in this REST API.
