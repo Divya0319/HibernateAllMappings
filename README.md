@@ -10,7 +10,7 @@ A Spring Boot REST API involving OneToOne, OneToMany, ManyToOne and ManyToMany m
 * #### ManyToMany  - from booksReferred to designers and vice versa.
 The application exposes various endpoints to demonstrate the working of these mapping relationships. 
 
-**Base url: hibernate-mappings-v2.ap-south-1.elasticbeanstalk.com/manyToMany**
+Base url: **hibernate-mappings-v2.ap-south-1.elasticbeanstalk.com/api**
 
 ### Following are the mappings available in this REST API.
 
