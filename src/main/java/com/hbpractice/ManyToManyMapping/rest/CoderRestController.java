@@ -28,7 +28,7 @@ import com.hbpractice.ManyToManyMapping.service.CoderService;
 
 
 @RestController
-@RequestMapping("/manyToMany")
+@RequestMapping("/api")
 public class CoderRestController {
 	
 private CoderService coderService;
@@ -397,7 +397,7 @@ private CoderService coderService;
 		return resp;
 	}
 	
-	@PostMapping("/coders/{coderId}/bookReferred")
+	@PostMapping("/coders/{coderId}/booksReferred")
 	public ResponseObject addBookReferredToCoder(@RequestBody BookReferred booksReferred, @PathVariable int coderId,
 											HttpServletResponse response) {
 		
