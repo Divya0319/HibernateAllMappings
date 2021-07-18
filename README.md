@@ -1,6 +1,4 @@
-# REST API with all hibernate mappings using Spring REST
-
-For a quick demo of the API, follow [this](http://hibernate-mappings-v2.ap-south-1.elasticbeanstalk.com) link.  
+# REST API with all hibernate mappings using Spring REST  
 
 A Spring Boot REST API involving OneToOne, OneToMany, ManyToOne and ManyToMany mappings.
 * #### OneToOne - from coders to coderDetail and vice versa.  
