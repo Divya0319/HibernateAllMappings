@@ -1,20 +1,16 @@
 package com.hbpractice.ManyToManyMapping;
 
-import java.util.TimeZone;
-
-import javax.annotation.PostConstruct;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class ManyToManyMappingApplication {
 	
-	@PostConstruct
-	public void init() {
+//	@PostConstruct
+//	public void init() {
 	// Setting Spring Boot SetTimeZone to Indian Standard Time
-    TimeZone.setDefault(TimeZone.getTimeZone("IST"));
-	}
+//    TimeZone.setDefault(TimeZone.getTimeZone("IST"));
+//	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(ManyToManyMappingApplication.class, args);
