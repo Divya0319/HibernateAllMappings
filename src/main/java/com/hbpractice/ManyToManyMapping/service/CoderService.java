@@ -54,5 +54,7 @@ public interface CoderService {
 
 	public boolean deleteDesignerById(int dId);
 
+	public Designer findDesignerById(int designerId);
+
 
 }

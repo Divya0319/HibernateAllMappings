@@ -157,4 +157,10 @@ public class CoderServiceImpl implements CoderService {
 		return coderDao.deleteDesignerById(dId);
 	}
 
+	@Override
+	@Transactional
+	public Designer findDesignerById(int designerId) {
+		return coderDao.findDesignerById(designerId);
+	}
+
 }

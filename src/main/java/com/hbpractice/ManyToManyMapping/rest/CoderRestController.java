@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -417,9 +416,8 @@ private CoderService coderService;
 		
 		List<BookReferred> books = coderService.findAllBooks();
 		
-		List<BookReferred> tempBooks = books;
 		
-		for(BookReferred tempBook : tempBooks) {
+		for(BookReferred tempBook : books) {
 						
 			
 			if(tempBook.getTitle().equals(booksReferred.getTitle())) {
@@ -487,9 +485,9 @@ private CoderService coderService;
 		
 		ResponseObject resObj = new ResponseObject();
 		
-		boolean bookFound = coderService.addBookToDesigner(bookReferred, designerId);
+		Designer designer = coderService.findDesignerById(designerId);
 		
-		if(!bookFound) {
+		if(designer == null) {
 			
 			response.setStatus(HttpStatus.NOT_FOUND.value());
 			resObj.setMessage("Designer not found with id : " + designerId);
@@ -497,6 +495,23 @@ private CoderService coderService;
 			return resObj;
 		}
 		
+		List<BookReferred> books = coderService.findAllBooks();
+		
+		for(BookReferred tempBook : books) {
+						
+			
+			if(tempBook.getTitle().equals(bookReferred.getTitle())) {
+				
+				response.setStatus(HttpStatus.BAD_REQUEST.value());
+				resObj.setMessage("Duplicate title not allowed");
+						
+				return resObj;
+				
+			}
+			
+		}
+		
+		coderService.addBookToDesigner(bookReferred, designerId);
 		
 		response.setStatus(HttpStatus.OK.value());
 		resObj.setMessage("Book added successfully to designer with id : " + designerId);
