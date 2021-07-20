@@ -22,7 +22,7 @@ Base url: **https://hibernate-mappings.herokuapp.com/api**
 7. **GET /booksReferred/coders?bookId=5** to fetch all coders who are referring to book with id=5.
 8. **GET /booksReferred/{bookId}/bookReviews** to fetch all reviews for a book.
 9. **GET /designers/{dId}/booksReferred** to fetch all books referred by a particular designer.
-10. **GET /booksReferred/{dId}/designers** to fetch all designers who refer a particular book.
+10. **GET /booksReferred/{bId}/designers** to fetch all designers who refer a particular book.
 11. **POST /coders** to add a new coder.
   
   Sample Request body ->   
@@ -42,7 +42,7 @@ Base url: **https://hibernate-mappings.herokuapp.com/api**
   }
   
   
-13. **POST /coders/{coderId}/bookReferred** to add new books referred, to a particular coder.
+13. **POST /coders/{coderId}/booksReferred** to add new books referred, to a particular coder.
   
   Sample Request body -> {
     "title":"Lets C"
