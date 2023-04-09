@@ -47,6 +47,8 @@ public interface CoderDAO {
 	public void addDesigner(Designer designer);
 
 	public boolean addBookToDesigner(BookReferred bookReferred, int designerId);
+	
+	public List<Designer> fetchAllDesigners();
 
 	public Designer findDesignerById(int designerId);
 

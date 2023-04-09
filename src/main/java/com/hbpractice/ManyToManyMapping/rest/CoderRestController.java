@@ -105,6 +105,35 @@ private CoderService coderService;
 		
 	}
 	
+	@GetMapping("/designers")
+	public List<?> fetchAllDesigners(HttpServletResponse response) {
+		
+		List<Designer> designers = coderService.fetchAllDesigners();
+		
+		List<Designer> tempDesigners = designers;
+
+		if(designers.size() == 0) {
+			response.setStatus(HttpStatus.NOT_FOUND.value());
+			ResponseObject res = new ResponseObject();
+			res.setMessage("No designers available");
+			
+			List<ResponseObject> resObj = new ArrayList<>();
+			resObj.add(res);
+			
+			return resObj;
+	
+		}
+		
+		for(Designer designer : tempDesigners) {
+			
+			designer.setBooksReferred(null);
+		}
+		
+		response.setStatus(HttpStatus.OK.value());
+		
+		return tempDesigners;
+	}
+	
 	@GetMapping("/coderDetail/{coderDetailId}/coders")
 	public List<?> fetchCoderForGivenCoderDetail(@PathVariable int coderDetailId, HttpServletResponse response) {
 		ResponseObject res = new ResponseObject();
@@ -305,7 +334,7 @@ private CoderService coderService;
 			
 			response.setStatus(HttpStatus.NOT_FOUND.value());
 			
-			resp.setMessage("Designer not found with id : " + dId );
+			resp.setMessage("Books not found for designer with id : " + dId );
 			
 			resObj.add(resp);
 			

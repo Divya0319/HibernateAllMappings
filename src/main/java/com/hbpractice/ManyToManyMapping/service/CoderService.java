@@ -45,7 +45,7 @@ public interface CoderService {
 	public List<BookReview> findReviewsForBook(int bookId);
 
 	public void addDesigner(Designer designer);
-
+	
 	public boolean addBookToDesigner(BookReferred bookReferred, int designerId);
 
 	public List<BookReferred> findAllBooksForDesigner(int dId);
@@ -53,6 +53,8 @@ public interface CoderService {
 	public List<Designer> findAllDesignersForBook(int bId);
 
 	public boolean deleteDesignerById(int dId);
+	
+	public List<Designer> fetchAllDesigners();
 
 	public Designer findDesignerById(int designerId);
 

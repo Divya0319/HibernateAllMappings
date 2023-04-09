@@ -315,6 +315,17 @@ public class CoderDAOImpl implements CoderDAO {
 	}
 	
 	@Override
+	public List<Designer> fetchAllDesigners() {
+		Session fetchAllDesignerSession = entityManager.unwrap(Session.class);
+		
+		Query<Designer> theQuery = fetchAllDesignerSession.createQuery("from Designer", Designer.class);
+		
+		List<Designer> designers = theQuery.getResultList();
+		
+		return designers;
+	}
+	
+	@Override
 	public Designer findDesignerById(int designerId) {
 		
 		Session currentSession = entityManager.unwrap(Session.class);
