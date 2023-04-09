@@ -1,6 +1,15 @@
-# REST API with all hibernate mappings using Spring REST
-A Spring Boot application involving OneToOne, OneToMany, ManyToOne and ManyToMany mappings.
-The application exposes various endpoints to demonstrate the working of these mapping relationships
+# REST API with all hibernate mappings using Spring REST  
+To preview the working app, follow this [link](https://hibernate-mappings.herokuapp.com)
+
+A Spring Boot REST API involving OneToOne, OneToMany, ManyToOne and ManyToMany mappings.
+* #### OneToOne - from coders to coderDetail and vice versa.  
+* #### OneToMany - from coders to booksReferred.
+* #### OneToMany unidirectional - from booksReferred to bookReviews.
+* #### ManyToOne  - from booksReferred to coders.
+* #### ManyToMany  - from booksReferred to designers and vice versa.
+The application exposes various endpoints to demonstrate the working of these mapping relationships. 
+
+Base url: **https://hibernate-mappings.herokuapp.com/api**
 
 ### Following are the mappings available in this REST API.
 
@@ -13,7 +22,7 @@ The application exposes various endpoints to demonstrate the working of these ma
 7. **GET /booksReferred/coders?bookId=5** to fetch all coders who are referring to book with id=5.
 8. **GET /booksReferred/{bookId}/bookReviews** to fetch all reviews for a book.
 9. **GET /designers/{dId}/booksReferred** to fetch all books referred by a particular designer.
-10. **GET /booksReferred/{dId}/designers** to fetch all designers who refer a particular book.
+10. **GET /booksReferred/{bId}/designers** to fetch all designers who refer a particular book.
 11. **POST /coders** to add a new coder.
   
   Sample Request body ->   
@@ -33,7 +42,7 @@ The application exposes various endpoints to demonstrate the working of these ma
   }
   
   
-13. **POST /coders/{coderId}/bookReferred** to add new books referred, to a particular coder.
+13. **POST /coders/{coderId}/booksReferred** to add new books referred, to a particular coder.
   
   Sample Request body -> {
     "title":"Lets C"
@@ -77,5 +86,3 @@ The application exposes various endpoints to demonstrate the working of these ma
 20. **DELETE /booksReferred/{bookId}** to delete a book by id.
 21. **DELETE /coderDetail/{coderDetailId}** to delete a coderDetail by id.
 22. **DELETE /designers/{dId}** to delete a designer by id.
-
-For a quick demo of the API, follow [this](http://hibernate-mappings.ap-south-1.elasticbeanstalk.com/) link.
