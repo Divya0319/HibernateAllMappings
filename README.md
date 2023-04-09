@@ -16,13 +16,14 @@ Base url: **https://localhost:8080/api**
 2. **GET /coders/{coderId}** to fetch a coder by id.
 3. **GET /coderDetail/{coderDetailId}/coders** to fetch coder pertaining to a coderDetail.
 4. **GET /coders/{coderId}/coderDetail** to fetch coderDetail pertaining to a coder.
-5. **GET /booksReferred** to fetch all books referred.
-6. **GET /coders/{coderId}/booksReferred** to fetch all books referred by a particular coder.
-7. **GET /booksReferred/coders?bookId=5** to fetch all coders who are referring to book with id=5.
+5. **GET /designers** to fetch all designers created.
+6. **GET /booksReferred** to fetch all books referred.
+7. **GET /coders/{coderId}/booksReferred** to fetch all books referred by a particular coder.
+8. **GET /booksReferred/coders?bookId=5** to fetch all coders who are referring to book with id=5.
 8. **GET /booksReferred/{bookId}/bookReviews** to fetch all reviews for a book.
-9. **GET /designers/{dId}/booksReferred** to fetch all books referred by a particular designer.
-10. **GET /booksReferred/{bId}/designers** to fetch all designers who refer a particular book.
-11. **POST /coders** to add a new coder.
+10. **GET /designers/{dId}/booksReferred** to fetch all books referred by a particular designer.
+11. **GET /booksReferred/{bId}/designers** to fetch all designers who refer a particular book.
+12. **POST /coders** to add a new coder.
   
   Sample Request body ->   
   {
