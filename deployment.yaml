@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+  labels:
+    app: hibernate-all-mappings
+  name: hibernate-all-mappings
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hibernate-all-mappings
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: hibernate-all-mappings
+    spec:
+      containers:
+      - image: nikoleye/hibernate-all-mappings:1.0.0
+        imagePullPolicy: IfNotPresent
+        name: hibernate-all-mappings
+        resources:
+          requests: 
+            cpu: "250m"
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    cloud.google.com/neg: '{"ingress":true}'
+  labels:
+    app: hibernate-all-mappings
+  name: hibernate-all-mappings
+  namespace: default
+spec:
+  ports:
+  -  port: 8000
+     protocol: TCP
+     targetPort: 8000
+  selector:
+    app: hibernate-all-mappings
+  sessionAffinity: None
+  type: LoadBalancer
