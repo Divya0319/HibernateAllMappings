@@ -119,7 +119,7 @@ private CoderService coderService;
 			List<ResponseObject> result = new ArrayList<>();
 			
 			response.setStatus(HttpStatus.NOT_FOUND.value());
-			res.setMessage("No coderDetail available with given id");
+			res.setMessage("No coder available with given id");
 			
 			result.add(res);
 			
@@ -157,7 +157,7 @@ private CoderService coderService;
 			List<ResponseObject> result = new ArrayList<>();
 			
 			response.setStatus(HttpStatus.NOT_FOUND.value());
-			res.setMessage("No coder available with given id");
+			res.setMessage("No coderDetail available for coder with id : " + coderId);
 			
 			result.add(res);
 			
@@ -342,7 +342,7 @@ private CoderService coderService;
 			
 			response.setStatus(HttpStatus.NOT_FOUND.value());
 			
-			resp.setMessage("Book not found with id : " + bId );
+			resp.setMessage("Designer not found for book with id : " + bId );
 			
 			resObj.add(resp);
 			
