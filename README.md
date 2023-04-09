@@ -1,5 +1,4 @@
 # REST API with all hibernate mappings using Spring REST  
-To preview the working app, follow this [link](https://hibernate-mappings.herokuapp.com)
 
 A Spring Boot REST API involving OneToOne, OneToMany, ManyToOne and ManyToMany mappings.
 * #### OneToOne - from coders to coderDetail and vice versa.  
@@ -9,7 +8,7 @@ A Spring Boot REST API involving OneToOne, OneToMany, ManyToOne and ManyToMany m
 * #### ManyToMany  - from booksReferred to designers and vice versa.
 The application exposes various endpoints to demonstrate the working of these mapping relationships. 
 
-Base url: **https://hibernate-mappings.herokuapp.com/api**
+Base url: **https://localhost:8080/api**
 
 ### Following are the mappings available in this REST API.
 
@@ -38,7 +37,7 @@ Base url: **https://hibernate-mappings.herokuapp.com/api**
   Sample Request body ->   
   {
     "githubProfileUrl":"http:www.github.com/6484",
-    "soRep":637"  
+    "soRep":637  
   }
   
   
