@@ -23,13 +23,37 @@ spec:
         app: hibernate-all-mappings
     spec:
       containers:
-      - image: nikoleye/hibernate-all-mappings:1.0.0
+      - image: nikoleye/hibernate-all-mappings:1.0.0-MYSQL
         imagePullPolicy: IfNotPresent
         name: hibernate-all-mappings
         resources:
           requests: 
             cpu: "250m"
-      restartPolicy: Always
+        env:   # Setting Enviornmental Variables
+            - name: DB_HOST   # Setting Database host address from configMap
+              valueFrom :
+                configMapKeyRef :
+                  name : db-config
+                  key :  host
+
+            - name: DB_NAME  # Setting Database name from configMap
+              valueFrom :
+                configMapKeyRef :
+                  name : db-config
+                  key :  dbName
+
+            - name: DB_USERNAME  # Setting Database username from Secret
+              valueFrom :
+                secretKeyRef :
+                  name : mysql-secrets
+                  key :  username
+
+            - name: DB_PASSWORD # Setting Database password from Secret
+              valueFrom :
+                secretKeyRef :
+                  name : mysql-secrets
+                  key :  password
+      restartPolicy: Always            
 ---
 apiVersion: v1
 kind: Service
