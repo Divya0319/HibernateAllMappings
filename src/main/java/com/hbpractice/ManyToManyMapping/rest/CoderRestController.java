@@ -249,6 +249,7 @@ private CoderService coderService;
 		for(BookReferred tempBook : tempBooks) {
 			
 			tempBook.setCoder(null);
+			tempBook.setDesigners(null);
 		}
 		
 		response.setStatus(HttpStatus.OK.value());
