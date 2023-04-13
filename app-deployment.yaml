@@ -23,7 +23,7 @@ spec:
         app: hibernate-all-mappings
     spec:
       containers:
-      - image: nikoleye/hibernate-all-mappings:1.0.0-MYSQL
+      - image: nikoleye/hibernate-all-mappings:1.0.3-MYSQL
         imagePullPolicy: IfNotPresent
         name: hibernate-all-mappings
         resources:
