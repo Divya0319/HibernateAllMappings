@@ -76,6 +76,7 @@
             </configuration>
         </plugin>
     </plugins>
+    <finalName>hb-many-aws</finalName>
 </build>
 
 </project>

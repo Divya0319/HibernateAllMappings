@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hibernate-all-mappings
+  name: hibernate-all-mappings
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hibernate-all-mappings
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: hibernate-all-mappings
+    spec:
+      containers:
+      - image: 865868102637.dkr.ecr.us-east-2.amazonaws.com/hb-many:1.0
+        imagePullPolicy: IfNotPresent
+        name: hibernate-all-mappings
+        resources:
+          requests: 
+            cpu: "250m"
+        env:   # Setting Enviornmental Variables
+            - name: DB_HOST   # Setting Database host address from configMap
+              valueFrom :
+                configMapKeyRef :
+                  name : db-config
+                  key :  host
+
+            - name: DB_NAME  # Setting Database name from configMap
+              valueFrom :
+                configMapKeyRef :
+                  name : db-config
+                  key :  dbNameForHbMany
+
+            - name: DB_USERNAME  # Setting Database username from Secret
+              valueFrom :
+                secretKeyRef :
+                  name : mysql-secrets
+                  key :  username
+
+            - name: DB_PASSWORD # Setting Database password from Secret
+              valueFrom :
+                secretKeyRef :
+                  name : mysql-secrets
+                  key :  password
+      restartPolicy: Always            
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: hibernate-all-mappings
+  name: hibernate-all-mappings
+  namespace: default
+spec:
+  ports:
+  -  port: 80
+     protocol: TCP
+     targetPort: 8200
+  selector:
+    app: hibernate-all-mappings
+  type: LoadBalancer
